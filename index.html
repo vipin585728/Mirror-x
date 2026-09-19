@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MIRROR-X | Decision Twin</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #0b0f19;
+            color: white;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .logo h1 {
+            font-size: 42px;
+            letter-spacing: 5px;
+        }
+
+
+        .logo p {
+            color: #8b93a7;
+            margin-top: 8px;
+        }
+
+
+        /* CARD */
+
+        .card {
+            background: #151b29;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border: 1px solid #252d40;
+        }
+
+
+        .card h2 {
+            margin-bottom: 20px;
+        }
+
+
+        /* FORM */
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            color: #b8c0d0;
+        }
+
+
+        textarea,
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            border: 1px solid #30394e;
+
+            background: #0e1420;
+
+            color: white;
+
+            outline: none;
+
+        }
+
+
+        textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+
+        }
+
+
+        /* BUTTON */
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #0b0f19;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            opacity: 0.85;
+
+        }
+
+
+        /* ANALYTICS */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .stat {
+
+            background: #0e1420;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+        }
+
+
+        .stat h3 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .stat p {
+
+            color: #8b93a7;
+
+        }
+
+
+        .analysis-box {
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            background: #0e1420;
+
+            border-radius: 12px;
+
+        }
+
+
+        .analysis-box h3 {
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .analysis-box p {
+
+            color: #c4cada;
+
+        }
+
+
+        /* DECISION HISTORY */
+
+        .decision {
+
+            background: #0e1420;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            margin-top: 15px;
+
+            border-left: 4px solid white;
+
+        }
+
+
+        .decision p {
+
+            margin: 7px 0;
+
+            color: #c4cada;
+
+        }
+
+
+        .empty {
+
+            color: #777f92;
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px;
+
+            }
+
+
+            .logo h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            .stats {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="logo">
+
+        <h1>MIRROR-X</h1>
+
+        <p>Your Digital Decision Twin</p>
+
+    </div>
+
+
+
+    <!-- NEW DECISION -->
+
+    <div class="card">
+
+        <h2>Record a Decision</h2>
+
+
+        <label>
+            What is the situation?
+        </label>
+
+
+        <textarea
+            id="situation"
+            placeholder="Example: I have an exam in 3 days..."
+        ></textarea>
+
+
+
+        <label>
+            What options do you have?
+        </label>
+
+
+        <input
+            type="text"
+            id="options"
+            placeholder="Example: Study / Play Games"
+        >
+
+
+
+        <label>
+            What did you choose?
+        </label>
+
+
+        <input
+            type="text"
+            id="choice"
+            placeholder="Example: Study"
+        >
+
+
+
+        <label>
+            Why did you choose it?
+        </label>
+
+
+        <textarea
+            id="reason"
+            placeholder="Explain your reason..."
+        ></textarea>
+
+
+
+        <label>
+            How confident are you?
+        </label>
+
+
+        <select id="confidence">
+
+            <option value="1">
+                1 - Very Low
+            </option>
+
+            <option value="2">
+                2
+            </option>
+
+            <option value="3">
+                3 - Medium
+            </option>
+
+            <option value="4">
+                4
+            </option>
+
+            <option value="5">
+                5 - Very High
+            </option>
+
+        </select>
+
+
+
+        <button onclick="saveDecision()">
+
+            SAVE DECISION
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ANALYTICS -->
+
+    <div class="card">
+
+        <h2>Decision Analytics</h2>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <h3 id="totalDecisions">
+                    0
+                </h3>
+
+                <p>
+                    Total Decisions
+                </p>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <h3 id="avgConfidence">
+                    0
+                </h3>
+
+                <p>
+                    Avg Confidence
+                </p>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <h3 id="highConfidence">
+                    0
+                </h3>
+
+                <p>
+                    High Confidence
+                </p>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <h3 id="consistency">
+                    0%
+                </h3>
+
+                <p>
+                    Consistency
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="analysis-box">
+
+            <h3>
+                Most Selected Choice
+            </h3>
+
+            <p id="mostChoice">
+                No data
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- DECISION HISTORY -->
+
+    <div class="card">
+
+        <h2>
+            Decision History
+        </h2>
+
+
+        <div id="decisionList"></div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =====================================
+       LOAD SAVED DECISIONS
+    ===================================== */
+
+
+    let decisions =
+        JSON.parse(
+            localStorage.getItem(
+                "mirrorX_decisions"
+            )
+        ) || [];
+
+
+
+    /* =====================================
+       SAVE DECISION
+    ===================================== */
+
+
+    function saveDecision() {
+
+
+        const situation =
+            document
+                .getElementById("situation")
+                .value
+                .trim();
+
+
+        const options =
+            document
+                .getElementById("options")
+                .value
+                .trim();
+
+
+        const choice =
+            document
+                .getElementById("choice")
+                .value
+                .trim();
+
+
+        const reason =
+            document
+                .getElementById("reason")
+                .value
+                .trim();
+
+
+        const confidence =
+            document
+                .getElementById("confidence")
+                .value;
+
+
+
+        /* VALIDATION */
+
+        if (
+            !situation ||
+            !options ||
+            !choice ||
+            !reason
+        ) {
+
+            alert(
+                "Please fill all fields."
+            );
+
+            return;
+
+        }
+
+
+
+        /* CREATE DECISION */
+
+        const decision = {
+
+            id: Date.now(),
+
+            situation: situation,
+
+            options: options,
+
+            choice: choice,
+
+            reason: reason,
+
+            confidence: confidence,
+
+            date:
+                new Date()
+                    .toLocaleString()
+
+        };
+
+
+
+        /* ADD TO ARRAY */
+
+        decisions.push(decision);
+
+
+
+        /* SAVE TO LOCAL STORAGE */
+
+        localStorage.setItem(
+
+            "mirrorX_decisions",
+
+            JSON.stringify(decisions)
+
+        );
+
+
+
+        /* CLEAR FORM */
+
+        document
+            .getElementById("situation")
+            .value = "";
+
+
+        document
+            .getElementById("options")
+            .value = "";
+
+
+        document
+            .getElementById("choice")
+            .value = "";
+
+
+        document
+            .getElementById("reason")
+            .value = "";
+
+
+        document
+            .getElementById("confidence")
+            .value = "1";
+
+
+
+        /* UPDATE UI */
+
+        displayDecisions();
+
+        analyzeDecisions();
+
+
+
+        alert(
+            "Decision saved successfully!"
+        );
+
+    }
+
+
+
+    /* =====================================
+       DISPLAY DECISIONS
+    ===================================== */
+
+
+    function displayDecisions() {
+
+
+        const list =
+            document.getElementById(
+                "decisionList"
+            );
+
+
+
+        if (decisions.length === 0) {
+
+            list.innerHTML =
+                '<div class="empty">' +
+                'No decisions recorded yet.' +
+                '</div>';
+
+            return;
+
+        }
+
+
+
+        list.innerHTML = "";
+
+
+
+        /* LATEST FIRST */
+
+        [...decisions]
+            .reverse()
+            .forEach(
+                decision => {
+
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.className =
+                        "decision";
+
+
+
+                    div.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Situation:
+                            </strong>
+
+                            ${decision.situation}
+
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Options:
+                            </strong>
+
+                            ${decision.options}
+
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Choice:
+                            </strong>
+
+                            ${decision.choice}
+
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Reason:
+                            </strong>
+
+                            ${decision.reason}
+
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Confidence:
+                            </strong>
+
+                            ${decision.confidence}/5
+
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Date:
+                            </strong>
+
+                            ${decision.date}
+
+                        </p>
+
+                    `;
+
+
+                    list.appendChild(div);
+
+
+                }
+            );
+
+    }
+
+
+
+    /* =====================================
+       ANALYSIS ENGINE
+    ===================================== */
+
+
+    function analyzeDecisions() {
+
+
+        const total =
+            decisions.length;
+
+
+
+        /* TOTAL */
+
+        document
+            .getElementById(
+                "totalDecisions"
+            )
+            .textContent = total;
+
+
+
+        /* NO DATA */
+
+        if (total === 0) {
+
+            document
+                .getElementById(
+                    "avgConfidence"
+                )
+                .textContent = "0";
+
+
+            document
+                .getElementById(
+                    "highConfidence"
+                )
+                .textContent = "0";
+
+
+            document
+                .getElementById(
+                    "consistency"
+                )
+                .textContent = "0%";
+
+
+            document
+                .getElementById(
+                    "mostChoice"
+                )
+                .textContent =
+                    "No data";
+
+
+            return;
+
+        }
+
+
+
+        /* =================================
+           AVERAGE CONFIDENCE
+        ================================= */
+
+
+        let confidenceSum = 0;
+
+
+
+        decisions.forEach(
+            decision => {
+
+                confidenceSum +=
+                    Number(
+                        decision.confidence
+                    );
+
+            }
+        );
+
+
+
+        const average =
+            confidenceSum / total;
+
+
+
+        document
+            .getElementById(
+                "avgConfidence"
+            )
+            .textContent =
+                average.toFixed(1)
+                + "/5";
+
+
+
+        /* =================================
+           HIGH CONFIDENCE
+        ================================= */
+
+
+        const highConfidenceCount =
+            decisions.filter(
+
+                decision =>
+                    Number(
+                        decision.confidence
+                    ) >= 4
+
+            ).length;
+
+
+
+        document
+            .getElementById(
+                "highConfidence"
+            )
+            .textContent =
+                highConfidenceCount;
+
+
+
+        /* =================================
+           CHOICE FREQUENCY
+        ================================= */
+
+
+        const choiceCount = {};
+
+
+
+        decisions.forEach(
+            decision => {
+
+
+                const choice =
+                    decision.choice
+                        .toLowerCase()
+                        .trim();
+
+
+
+                choiceCount[choice] =
+                    (
+                        choiceCount[choice]
+                        || 0
+                    ) + 1;
+
+
+            }
+        );
+
+
+
+        /* =================================
+           MOST SELECTED CHOICE
+        ================================= */
+
+
+        let mostChoice = "";
+
+        let highestCount = 0;
+
+
+
+        for (
+            const choice in choiceCount
+        ) {
+
+
+            if (
+                choiceCount[choice]
+                > highestCount
+            ) {
+
+
+                highestCount =
+                    choiceCount[choice];
+
+
+                mostChoice =
+                    choice;
+
+
+            }
+
+        }
+
+
+
+        document
+            .getElementById(
+                "mostChoice"
+            )
+            .textContent =
+
+                mostChoice
+                + " ("
+                + highestCount
+                + " times)";
+
+
+
+        /* =================================
+           CONSISTENCY
+        ================================= */
+
+
+        const consistency =
+            Math.round(
+
+                (
+                    highestCount
+                    / total
+                ) * 100
+
+            );
+
+
+
+        document
+            .getElementById(
+                "consistency"
+            )
+            .textContent =
+                consistency + "%";
+
+    }
+
+
+
+    /* =====================================
+       INITIAL LOAD
+    ===================================== */
+
+
+    displayDecisions();
+
+    analyzeDecisions();
+
+
+</script>
+
+
+</body>
+
+</html>
